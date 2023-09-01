@@ -1,0 +1,38 @@
+@import "../../../variables.scss";
+
+.modal__header__icon, .modal__content__description__icon {
+    color: $default-font-color;
+    width: 17px;
+    height: 17px;
+  }
+
+  .modal__header {
+    display: flex;
+    padding: 10px 15px;
+
+    .modal__header__icon--title {
+      padding: 5px;
+      margin: 3px 0px;
+    }
+
+    .modal__header__title p, .modal__header__title h3 {
+      margin: 2.5px 5px;
+    }
+
+    .modal__header__title p {
+      color: $secondary-font-color;
+      font-size: 0.9rem;
+    }
+    
+    .modal__header__icon--close {
+      cursor: pointer;
+      height: 23px;
+      width: 23px;
+      padding: 5px;
+      margin-left: auto;
+
+      &:hover {
+        color: $icon-hover-color;
+      }
+    }
+  }

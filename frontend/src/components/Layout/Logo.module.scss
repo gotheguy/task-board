@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+
+.logo-wrapper {
+  margin: 15px 10px 10px 15px;
+
+  .logo-wrapper__logo {
+    color: $default-font-color;
+    width: 25px;
+    height: 25px;
+  }
+}

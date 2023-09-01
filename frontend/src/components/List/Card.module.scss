@@ -1,0 +1,68 @@
+@import '../../variables.scss';
+
+.card {
+  width: 100%;
+  background-color: $card-color;
+  color: $default-font-color;
+  margin: 5px 0px;
+  padding: 10px;
+  border-radius: 7px;
+  list-style-type: none;
+  box-sizing: border-box;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $card-hover-color;
+  }
+
+  .card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+
+    .card__header__title {
+      margin: 5px;
+      font-size: 0.87rem;
+      font-weight: 400;
+    }
+
+    .card__header__priority-icon--high {
+      color: $priority-icon-high;
+      font-size: 1.0em;
+      margin: 5px;
+    }
+    
+    .card__header__priority-icon--medium {
+      color: $priority-icon-medium;
+      font-size: 0.9em;
+      margin: 5px;
+    }
+    
+    .card__header__priority-icon--low {
+      color: $priority-icon-low;
+      font-size: 1.0em;
+      margin: 5px;
+    }
+  }
+
+  .card__content {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 8px;
+
+    .card__content__icon {
+      color: white;
+      font-size: 0.8em;
+    }
+
+    .card__content__count {
+      font-size: 0.8em;
+      padding: 1px 7px 3px;
+    }
+
+    .card__content__avatar {
+      margin: 0px 0px 0px auto;
+    }
+  }
+}

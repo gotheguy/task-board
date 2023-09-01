@@ -1,0 +1,20 @@
+@import '../../../variables.scss';
+
+.add-link {
+  color: $default-font-color;
+  background-color: $list-color;
+  padding: 3px;
+  border: none;
+  display: flex;
+  text-decoration: none;
+  
+    .add-link__text {
+      font-size: 0.875rem;
+      font-weight: 400;
+      margin: 0px 3px;
+    }
+
+    .add-link__icon {
+      margin: 1px 4px;
+    }
+  }

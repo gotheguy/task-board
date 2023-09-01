@@ -1,0 +1,70 @@
+@import "../../../variables.scss";
+
+%common-styles {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+}
+
+.modal {
+    z-index: 100;
+    position: fixed;
+    top: 15vh;
+    color: $default-font-color;
+    background: $default-bg-color;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 8px;
+    border: 1px solid $card-color;
+
+    h3, h4 {
+      margin: 5px;
+      font-weight: 600;
+    }
+
+    .modal__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch; 
+
+      .modal__container__content {
+        @extend %common-styles;
+        flex: 4; 
+      }
+  
+      .modal__container__aside {
+        @extend %common-styles;
+        flex: 1; 
+        height: 100%;
+      }
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .modal {
+      left: calc(50% - 20rem);
+      width: 40rem;
+    }
+  }
+  
+  .modal-enter {
+    transform: translateY(-10rem);
+    opacity: 0;
+  }
+  
+  .modal-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 200ms;
+  }
+  
+  .modal-exit {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .modal-exit-active {
+    transform: translateY(-10rem);
+    opacity: 0;
+    transition: all 200ms;
+  }
+  
