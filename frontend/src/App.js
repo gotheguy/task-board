@@ -1,9 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 
 import classes from "./App.module.scss";
-
+import { UserContext } from "./context/UserContext";
 import { CardContext } from "./context/CardContext";
+import { useUser } from "./hooks/useUser";
 import { useList } from "./hooks/useList";
+
 import Header from "./components/Layout/Header";
 import Logo from "./components/Layout/Logo";
 import Navbar from "./components/Layout/Navbar";
@@ -12,17 +14,21 @@ import AddList from "./components/List/AddList";
 import Modal from "./components/UI/Modal/Modal";
 
 function App() {
+  const { setLoggedUser } = useContext(UserContext);
   const { selectedCard } = useContext(CardContext);
+  const { loggedUser } = useUser();
   const { lists, getLists, postList, isLoading, error } = useList();
   const [listAdded, setListAdded] = useState(false);
 
   useEffect(() => {
+    if (loggedUser) {
+      setLoggedUser(loggedUser);
+    }
     getLists();
-  }, [selectedCard]);
+  }, [loggedUser, setLoggedUser]);
 
   useEffect(() => {
     if (listAdded) {
-      getLists();
       setListAdded(false);
     }
   }, [listAdded]);

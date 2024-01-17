@@ -7,64 +7,64 @@
 }
 
 .modal {
-    z-index: 100;
-    position: fixed;
-    top: 15vh;
-    color: $default-font-color;
-    background: $default-bg-color;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 8px;
-    border: 1px solid $card-color;
+  z-index: 100;
+  position: fixed;
+  top: 15vh;
+  color: $default-font-color;
+  background: $default-bg-color;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  border: 1px solid $card-color;
 
-    h3, h4 {
-      margin: 5px;
-      font-weight: 600;
-    }
+  h3,
+  h4 {
+    margin: 5px;
+    font-weight: 600;
+  }
 
-    .modal__container {
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch; 
+  .modal__container__dropdowns {
+    display: flex;
+    align-items: center;
+    margin: 0px 0px 0px 35px;
 
-      .modal__container__content {
-        @extend %common-styles;
-        flex: 4; 
-      }
-  
-      .modal__container__aside {
-        @extend %common-styles;
-        flex: 1; 
-        height: 100%;
-      }
+    .dropdown__button__icon {
+      color: #ffcc70;
     }
   }
-  
-  @media (min-width: 768px) {
-    .modal {
-      left: calc(50% - 20rem);
-      width: 40rem;
+
+  .modal__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+
+    .modal__container__content {
+      @extend %common-styles;
+      flex: 4;
+    }
+
+    .modal__container__aside {
+      @extend %common-styles;
+      flex: 1;
+      height: 100%;
     }
   }
-  
-  .modal-enter {
-    transform: translateY(-10rem);
-    opacity: 0;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
   }
-  
-  .modal-enter-active {
-    transform: translateY(0);
-    opacity: 1;
-    transition: all 200ms;
-  }
-  
-  .modal-exit {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  .modal-exit-active {
-    transform: translateY(-10rem);
-    opacity: 0;
-    transition: all 200ms;
-  }
-  
+}
+
+.modal--enter {
+  opacity: 1; /* Transition opacity to 1 for entrance */
+  transform: translateY(0); /* Transition to on-screen position */
+  height: auto; /* Allow content to determine the height */
+}
+
+.modal--exit {
+  opacity: 0; /* Transition opacity to 0 for exit */
+  transform: translateY(-10rem); /* Transition off-screen */
+  height: 0; /* Collapse height to 0 during exit */
+}

@@ -1,13 +1,18 @@
 import React, { Fragment } from "react";
 
 import classes from "./Logo.module.scss";
-import { BiSolidLeaf } from "react-icons/bi";
+import imageUrl from "../../assets/leaf-icon512.png"; // Replace with the path to your image
 
 const Logo = (props) => {
   return (
     <Fragment>
       <div className={classes["logo-wrapper"]}>
-        <BiSolidLeaf className={classes["logo-wrapper__logo"]} />
+        <img
+          className={classes["logo-wrapper__image"]}
+          src={imageUrl}
+          alt="logo"
+        />
+        <h1 className={classes["logo-wrapper__text"]}>Taskboard</h1>
       </div>
     </Fragment>
   );

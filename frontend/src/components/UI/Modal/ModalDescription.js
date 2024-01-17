@@ -1,57 +1,72 @@
-import React, { Fragment, useRef } from "react";
+import React, { Fragment, useRef, useState, useEffect } from "react";
 
-import axios from "axios";
 import classes from "./ModalDescription.module.scss";
-import { BiSolidDetail } from "react-icons/bi";
+import { useCard } from "../../../hooks/useCard";
+import { PiClipboardBold } from "react-icons/pi";
 import Textarea from "../../UI/Textarea";
 import Button from "../../UI/Button";
 
-const ModalDescription = ({ selectedCard, setSelectedCard }) => {
-  const textareaRef = useRef();
+const ModalDescription = ({ selectedCard }) => {
+  const textareaRef = useRef(null);
+  const { updateCard, isLoading, error } = useCard();
+  const [isEditingDescription, setIsEditingDescription] = useState(false);
+
+  const startEditingDescription = () => {
+    setIsEditingDescription(true);
+  };
+
+  const cancelEditingDescription = () => {
+    setIsEditingDescription(false);
+  };
 
   const saveDescriptionHandler = () => {
     const newDescription = textareaRef.current.value;
     if (newDescription.trim().length !== 0) {
-      axios
-        .patch(`${process.env.REACT_APP_BASE_URL}/cards/${selectedCard._id}`, {
-          description: newDescription,
-        })
-        .then((res) => {
-          setSelectedCard({ ...selectedCard, description: newDescription });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      updateCard(selectedCard._id, "description", newDescription);
     }
+    setIsEditingDescription(false);
   };
 
   return (
     <Fragment>
       <div className={classes["modal__content__description"]}>
-        <BiSolidDetail
-          className={`${classes["modal__content__description__icon"]} ${classes["modal__content__description__icon--detail"]}`}
+        <PiClipboardBold
+          className={`${classes["modal__content__description__icon--detail"]}`}
         />
         <h4>Description</h4>
       </div>
-      {selectedCard.description ? (
-        <p className={classes["modal__content__description__text"]}>
-          {selectedCard.description}
-        </p>
-      ) : (
+      {isEditingDescription ? (
         <div className={classes["modal__content__description__textarea"]}>
           <Textarea
-            autoFocus={false}
-            className={"textarea--full"}
+            autoFocus={true}
+            className={"textarea--full-height"}
             ref={textareaRef}
-            text="Enter your description here..."
+            text="Enter a new description"
+            defaultValue={selectedCard.description}
           />
-          <div>
-            <Button onClick={saveDescriptionHandler}>Add</Button>
-            <a href="/#" onClick={() => console.log("Cancel link clicked!")}>
+          <div className={classes["modal__content__description__buttons"]}>
+            <Button
+              buttonClasses={"default__btn"}
+              onClick={saveDescriptionHandler}
+            >
+              Save
+            </Button>
+            <a
+              href="/#"
+              className="exclude-blur"
+              onClick={cancelEditingDescription}
+            >
               Cancel
             </a>
           </div>
         </div>
+      ) : (
+        <p
+          className={classes["modal__content__description__text"]}
+          onClick={startEditingDescription}
+        >
+          {selectedCard.description || "Enter a new description"}
+        </p>
       )}
     </Fragment>
   );

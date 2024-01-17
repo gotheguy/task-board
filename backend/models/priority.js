@@ -1,8 +1,8 @@
 class Priority {
-  static High = "HIGH";
-  static Medium = "MEDIUM";
-  static Low = "LOW";
-  static None = "NONE";
+  static High = "High";
+  static Medium = "Medium";
+  static Low = "Low";
+  static None = "None";
 }
 
 module.exports = Priority;

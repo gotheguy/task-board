@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .list-header {
   display: flex;
@@ -14,28 +14,18 @@
   .list-header__count {
     color: $default-font-color;
   }
-  
+
   .list-header__icon {
     color: $default-font-color;
     margin-top: 3px;
     cursor: pointer;
 
     &:hover {
-      color: $icon-hover-color;
+      color: $item-hover-color;
     }
   }
 
   .list-header__item:last-child {
     margin-left: auto;
   }
-}
-
-/* Medium screens (481px to 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-
-}
-
-/* Small screens (up to 480px) */
-@media (min-width: 769px) {
-
 }

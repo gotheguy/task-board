@@ -1,31 +1,39 @@
 @import "../../../variables.scss";
+@import "../../../animations.scss";
 
 .modal__content__description {
-      display: flex;
-      align-items: center;
-      margin: 10px 0px 0px;
+  display: flex;
+  align-items: center;
+  margin: 10px 0px 0px;
 
-      .modal__content__description__icon--detail {
-        padding: 3px 5px 0px;
-      }
-    }
+  .modal__content__description__icon--detail {
+    color: $default-font-color;
+    padding: 3px 5px 0px;
+    font-size: 1em;
+  }
+}
 
-    .modal__content__description__textarea {
-      display: flex;
-      flex-direction: column;
-      margin: 5px;
-    }
+.modal__content__description__textarea {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
 
-    .modal__content__description__text, .modal__content__description__textarea {
-      padding: 5px 10px 5px 25px;
-    }
+  .modal__content__description__buttons {
+    animation: fadeIn 0.5s ease;
+  }
+}
 
-    .modal__content__description__text {
-      margin: 5px;
+.modal__content__description__textarea {
+  padding: 5px 10px 5px 25px;
+}
 
-      &:hover {
-        background-color: $card-btn-hover-color;
-        border-radius: 7px;
-        cursor: pointer;
-      }
-    }
+.modal__content__description__text {
+  padding: 5px 10px 5px 10px;
+  margin: 5px 10px 5px 30px;
+
+  &:hover {
+    background-color: $card-btn-hover-color;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+}

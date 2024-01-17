@@ -1,11 +1,19 @@
 @import "../../variables.scss";
 
 .logo-wrapper {
-  margin: 15px 10px 10px 15px;
+  display: flex;
+  margin: 5px 10px;
 
-  .logo-wrapper__logo {
+  .logo-wrapper__text {
+    padding: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .logo-wrapper__image {
+    padding: 9px 5px;
     color: $default-font-color;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
   }
 }

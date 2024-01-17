@@ -1,10 +1,10 @@
-@import './variables.scss';
+@import "./variables.scss";
 
 .app {
   .app__list-wrapper {
     display: flex;
   }
-  
+
   .app__avatar {
     margin: 0px 25px 0px auto;
   }
@@ -35,38 +35,22 @@ a {
   }
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
 /* Large screens (769px and above) */
 @media (min-width: 769px) {
   .list-container {
     height: 100%;
-    width: 14%;
+    width: 13%;
     padding: 5px 10px;
     margin: 10px 5px;
   }
-  
+
   .list-container:first-child {
     margin-left: 10px;
   }
-
-}
-
-/* Medium screens (481px to 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .app__list-wrapper {
-    flex-wrap: wrap;
-  }
-
-  .list-container {
-    height: 100%;
-    width: 25%;
-    padding: 5px 10px;
-    margin: 10px 5px;
-  }
-}
-
-/* Small screens (up to 480px) */
-@media (min-width: 769px) {
- 
 }
 
 .link {

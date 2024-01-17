@@ -1,14 +1,30 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
-.button {
+@mixin button-style($background-color, $border-radius) {
   color: $default-font-color;
-  background-color: $button-color;
-  padding: 6px 20px;
-  border-radius: 3px;
+  background-color: $background-color;
+  border-radius: $border-radius;
+  padding: 5px 15px;
   border: none;
   cursor: pointer;
+}
+
+.default__btn {
+  @include button-style($list-color, 5px);
+  border: 1.5px solid $default-font-color;
 
   &:hover {
-    background-color: $button-hover-color;
+    background-color: black;
+  }
+}
+
+.action__btn {
+  @include button-style($card-color, 3px);
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  &:hover {
+    background-color: $card-hover-color;
   }
 }

@@ -46,11 +46,11 @@ exports.createList = async (req, res, next) => {
 };
 
 exports.deleteList = async (req, res, next) => {
-  const listId = req.params.id;
+  const { id } = req.params;
 
   let list;
   try {
-    list = await List.findById(listId);
+    list = await List.findById(id);
   } catch (err) {
     const error = new HttpError(
       "Something went wrong, could not delete list.",
@@ -77,3 +77,34 @@ exports.deleteList = async (req, res, next) => {
 
   res.status(200).json({ message: "Deleted list." });
 };
+
+// exports.moveCardFromList = async (req, res, next) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return next(
+//       new HttpError("Invalid data, please review your input data", 422)
+//     );
+//   }
+
+//   const { listId, cardId } = req.params;
+
+//   let card;
+//   try {
+//     card = await Card.findById(cardId);
+//   } catch (err) {
+//     const error = new HttpError(
+//       "Something went wrong, could not get card.",
+//       500
+//     );
+//     return next(error);
+//   }
+
+//   try {
+//     await createdList.save();
+//   } catch (err) {
+//     return next(
+//       new HttpError("Something went wrong, could not create list.", 500)
+//     );
+//   }
+//   res.status(201).json({ list: createdList });
+// };

@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .card {
   width: 100%;
@@ -26,24 +26,6 @@
       font-size: 0.87rem;
       font-weight: 400;
     }
-
-    .card__header__priority-icon--high {
-      color: $priority-icon-high;
-      font-size: 1.0em;
-      margin: 5px;
-    }
-    
-    .card__header__priority-icon--medium {
-      color: $priority-icon-medium;
-      font-size: 0.9em;
-      margin: 5px;
-    }
-    
-    .card__header__priority-icon--low {
-      color: $priority-icon-low;
-      font-size: 1.0em;
-      margin: 5px;
-    }
   }
 
   .card__content {
@@ -52,13 +34,13 @@
     margin: 0px 0px 0px 8px;
 
     .card__content__icon {
-      color: white;
-      font-size: 0.8em;
+      color: $default-font-color;
+      font-size: 1em;
     }
 
     .card__content__count {
       font-size: 0.8em;
-      padding: 1px 7px 3px;
+      padding: 3px 7px;
     }
 
     .card__content__avatar {

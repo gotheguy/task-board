@@ -30,7 +30,9 @@ const AddList = ({ onAddList }) => {
           <div>
             <Input ref={inputRef} placeholder="Enter a list title..." />
             <div className={mainClasses["add-card-container"]}>
-              <Button onClick={addListHandler}>Add</Button>
+              <Button buttonClasses={"default__btn"} onClick={addListHandler}>
+                Add
+              </Button>
               <a href="/#" onClick={inputHandler}>
                 Cancel
               </a>

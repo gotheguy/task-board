@@ -1,4 +1,4 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .textarea-container {
   width: 100%;
@@ -6,9 +6,9 @@
   .textarea-container__textarea {
     color: $default-font-color;
     background-color: $card-color;
+    width: 100%;
     padding: 10px;
     margin: 5px 0px;
-    height: 100px;
     border: none;
     resize: none;
     border-radius: 7px;
@@ -16,9 +16,19 @@
     font-size: 0.875em;
     box-sizing: border-box;
     outline: none;
+    overflow: auto;
+    transition: height 0.3s ease-in-out;
+
+    &:focus {
+      transition-delay: 0s;
+    }
   }
 
-  .textarea--full {
-    width: 100%;
+  .textarea--default-height {
+    height: 40px;
+  }
+
+  .textarea--full-height {
+    height: 150px;
   }
 }

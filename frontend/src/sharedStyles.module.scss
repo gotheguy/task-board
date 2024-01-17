@@ -1,0 +1,24 @@
+@import "./variables.scss";
+
+@mixin priority-icon($icon-color, $font-size) {
+  color: $icon-color;
+  font-size: $font-size;
+  margin: 5px;
+}
+
+.priority-icon--none {
+  @include priority-icon($priority-icon-none, 0.5em);
+  padding-left: 5px;
+}
+
+.priority-icon--high {
+  @include priority-icon($priority-icon-high, 1em);
+}
+
+.priority-icon--medium {
+  @include priority-icon($priority-icon-medium, 0.8em);
+}
+
+.priority-icon--low {
+  @include priority-icon($priority-icon-low, 1em);
+}

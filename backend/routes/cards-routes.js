@@ -6,7 +6,9 @@ const cardsController = require("../controllers/cards-controller");
 
 router.get("/", cardsController.getAllCards);
 
-router.get("/:id", cardsController.getCardsByListId);
+router.get("/byListId", cardsController.getCardsByListId);
+
+router.get("/:id", cardsController.getCardById);
 
 router.post(
   "/",
@@ -18,8 +20,10 @@ router.patch("/:id", cardsController.updateCard);
 
 router.delete("/:id", cardsController.deleteCard);
 
-router.patch("/:id/comments", cardsController.updateComment);
+router.post("/:id/comments", cardsController.postComment);
 
-router.delete("/:id/comments", cardsController.deleteComment);
+router.patch("/:id/comments/:index", cardsController.updateComment);
+
+router.delete("/:id/comments/:index", cardsController.deleteComment);
 
 module.exports = router;

@@ -12,19 +12,19 @@ import classes from "./List.module.scss";
 import { CardContext } from "../../context/CardContext";
 import { useCard } from "../../hooks/useCard";
 import Card from "./Card";
-import Textarea from "../UI/Textarea";
+import Input from "../UI/Input";
 import Button from "../UI/Button";
 import AddItemButton from "../UI/CustomUI/AddItemButton";
 import { FaEllipsisVertical } from "react-icons/fa6";
 
 const List = ({ id, title }) => {
   const { setSelectedCard } = useContext(CardContext);
-  const { cards, getCardByListId, postCard, isLoading, error } = useCard();
+  const { cards, getCardsByListId, postCard, isLoading, error } = useCard();
   const [showTextarea, setShowTextarea] = useState(false);
-  const textareaRef = useRef();
+  const inputRef = useRef();
 
   useEffect(() => {
-    getCardByListId(id);
+    getCardsByListId(id);
   }, []);
 
   const textareaHandler = () => {
@@ -36,7 +36,7 @@ const List = ({ id, title }) => {
   };
 
   const addCardHandler = () => {
-    const cardTitle = textareaRef.current.value;
+    const cardTitle = inputRef.current.value;
     if (cardTitle.trim().length !== 0) {
       postCard(id, cardTitle);
       textareaHandler();
@@ -79,14 +79,15 @@ const List = ({ id, title }) => {
           <AddItemButton text="Add a card" onClick={textareaHandler} />
         ) : (
           <div>
-            <Textarea
-              autoFocus={true}
-              className={"textarea--full"}
-              ref={textareaRef}
-              text="Enter a card title..."
+            <Input
+              autoFocus={false}
+              ref={inputRef}
+              placeholder="Enter a card title..."
             />
             <div className={mainClasses["add-card-container"]}>
-              <Button onClick={addCardHandler}>Add</Button>
+              <Button buttonClasses={"default__btn"} onClick={addCardHandler}>
+                Add
+              </Button>
               <a href="/#" onClick={textareaHandler}>
                 Cancel
               </a>

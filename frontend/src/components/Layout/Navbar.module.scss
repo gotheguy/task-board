@@ -1,8 +1,9 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 5px 0px;
   background: rgba(0, 0, 0, 0.15);
 }

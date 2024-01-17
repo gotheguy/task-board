@@ -1,38 +1,49 @@
 @import "../../../variables.scss";
 
-.modal__header__icon, .modal__content__description__icon {
+.modal__header {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+
+  .modal__header__icon--title {
     color: $default-font-color;
-    width: 17px;
-    height: 17px;
+    padding: 5px;
+    margin: 3px 0px;
   }
 
-  .modal__header {
+  .modal__header__title {
     display: flex;
-    padding: 10px 15px;
+    align-items: center;
 
-    .modal__header__icon--title {
-      padding: 5px;
-      margin: 3px 0px;
-    }
-
-    .modal__header__title p, .modal__header__title h3 {
+    h3 {
       margin: 2.5px 5px;
+
+      & p {
+        margin: 2.5px 5px;
+        color: $secondary-font-color;
+        font-size: 0.9rem;
+      }
     }
 
-    .modal__header__title p {
-      color: $secondary-font-color;
-      font-size: 0.9rem;
+    .modal__header__priority {
+      padding: 6px 0px 0px;
     }
-    
-    .modal__header__icon--close {
+
+    .modal__header__action {
       cursor: pointer;
-      height: 23px;
-      width: 23px;
+      font-size: 1.4rem;
       padding: 5px;
       margin-left: auto;
 
-      &:hover {
-        color: $icon-hover-color;
+      .modal__header__icon--close {
+        color: $default-font-color;
       }
     }
   }
+
+  .modal__header__subtitle {
+    display: flex;
+    align-items: center;
+    margin-left: 35px;
+  }
+}

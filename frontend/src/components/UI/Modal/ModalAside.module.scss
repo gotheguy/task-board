@@ -1,18 +1,27 @@
+@mixin action-icon {
+  padding: 2px 0px 0px;
+  font-size: 1rem;
+  margin-right: 8px;
+}
+
 .modal__aside {
   margin: 10px 0px 0px;
 
   ul {
-      list-style-type: none;
-      padding: 5px;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0px;
 
     li {
       padding: 2px 0px;
+      margin: 2px 0px;
 
-      button {
-        padding: 6px 10px;
-        border-radius: 3px;
-        border: none;
-        cursor: pointer;
+      .modal__aside__icon__move {
+        @include action-icon;
+      }
+
+      .modal__aside__icon__delete {
+        @include action-icon;
       }
     }
   }

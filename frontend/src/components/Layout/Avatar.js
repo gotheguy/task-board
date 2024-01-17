@@ -3,17 +3,17 @@ import React, { useEffect } from "react";
 import classes from "./Avatar.module.scss";
 import { useUser } from "../../hooks/useUser";
 
-const Avatar = ({ imageUrl, assignee, size, fontSize }) => {
+const Avatar = ({ imageUrl, userId, size, fontSize }) => {
   const { user, getUserById, isLoading, error } = useUser();
 
   useEffect(() => {
-    getUserById(assignee);
+    getUserById(userId);
   }, []);
 
-  const avatarStyle = {
+  const avatarStyle = user && {
     width: `${size}px`,
     height: `${size}px`,
-    backgroundColor: user?.avatar?.colorGradient1 || "defaultColor1",
+    backgroundColor: user?.avatar?.colorGradient1,
     backgroundImage: `linear-gradient(to bottom, ${
       user?.avatar?.colorGradient1 || "defaultColor1"
     }, ${user?.avatar?.colorGradient2 || "defaultColor2"})`,

@@ -1,11 +1,28 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
 .header {
-  margin: 0px 5px;
-}
+  display: flex;
+  align-items: center;
 
-.header__text {
-  font-size: 1.3rem;
-  font-weight: 500;
-  color: $default-font-color;
+  .header__themes {
+    display: flex;
+    align-items: flex-end;
+    padding: 5px 10px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+
+    .header__themes__icon {
+      padding: 1px 5px;
+      font-weight: 500;
+    }
+
+    &:hover {
+      color: $link-hover-color;
+    }
+  }
+
+  .header__avatar {
+    padding: 5px 20px 5px 5px;
+  }
 }

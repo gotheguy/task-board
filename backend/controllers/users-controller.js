@@ -109,11 +109,11 @@ exports.updateUser = async (req, res, next) => {
 };
 
 exports.deleteUser = async (req, res, next) => {
-  const userId = req.params.id;
+  const { id } = req.params;
 
   let user;
   try {
-    user = await User.findById(userId);
+    user = await User.findById(id);
   } catch (err) {
     const error = new HttpError(
       "Something went wrong, could not delete user.",
@@ -129,7 +129,7 @@ exports.deleteUser = async (req, res, next) => {
 
   try {
     await user.deleteOne();
-    await Card.deleteMany({ assignee: userId });
+    await Card.deleteMany({ assignee: id });
   } catch (err) {
     const error = new HttpError(
       "Something went wrong, could not delete user.",

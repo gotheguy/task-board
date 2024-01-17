@@ -19,9 +19,26 @@ exports.getAllCards = async (req, res, next) => {
   });
 };
 
+exports.getCardById = async (req, res, next) => {
+  const { id } = req.params;
+  let card;
+
+  try {
+    card = await Card.findById({ _id: id });
+  } catch (err) {
+    return next(
+      new HttpError("Something went wrong, could not get card.", 500)
+    );
+  }
+  res.json({
+    card,
+  });
+};
+
 exports.getCardsByListId = async (req, res, next) => {
-  const listId = req.params.id;
+  const { listId } = req.query;
   let cards;
+
   try {
     cards = await Card.find({ list: listId });
   } catch (err) {
@@ -54,7 +71,7 @@ exports.createCard = async (req, res, next) => {
     comments: [],
     priority: Priority.None,
     list,
-    assignee: {},
+    assignee: null,
   });
 
   let foundList;
@@ -100,14 +117,7 @@ exports.updateCard = async (req, res, next) => {
 
   for (const field in req.body) {
     if (req.body[field] !== undefined) {
-      const { comments } = req.body;
-      if (!comments) {
-        card[field] = req.body[field];
-      } else {
-        if (comments.length > 0) {
-          card.comments.push(comments);
-        }
-      }
+      card[field] = req.body[field];
     }
   }
 
@@ -156,6 +166,47 @@ exports.deleteCard = async (req, res, next) => {
   res.status(200).json({ message: "Deleted card." });
 };
 
+exports.postComment = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError("Invalid inputs passed, please check your data.", 422)
+    );
+  }
+
+  const { id } = req.params;
+  const { text, commenter } = req.body;
+  let card;
+
+  try {
+    card = await Card.findById(id);
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not create comment.",
+      500
+    );
+    return next(error);
+  }
+
+  const createdComment = {
+    text,
+    commenter,
+  };
+
+  try {
+    card.comments.push(createdComment);
+    await card.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not create comment.",
+      500
+    );
+    return next(error);
+  }
+
+  res.status(200).json({ card });
+};
+
 exports.updateComment = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -164,20 +215,19 @@ exports.updateComment = async (req, res, next) => {
     );
   }
 
-  const cardId = req.params.id;
+  const { id, index } = req.params;
+  const { comment } = req.body;
 
   let card;
   try {
-    card = await Card.findById(cardId);
+    card = await Card.findById(id);
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not update card.",
+      "Something went wrong, could not update comment.",
       500
     );
     return next(error);
   }
-
-  const { index, comment } = req.body;
 
   if (comment && index >= 0 && index < card.comments.length) {
     card.comments[index] = comment;
@@ -189,7 +239,7 @@ exports.updateComment = async (req, res, next) => {
     await card.save();
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not update card.",
+      "Something went wrong, could not update comment.",
       500
     );
     return next(error);
@@ -199,14 +249,14 @@ exports.updateComment = async (req, res, next) => {
 };
 
 exports.deleteComment = async (req, res, next) => {
-  const cardId = req.params.id;
+  const { id, index } = req.params;
 
   let card;
   try {
-    card = await Card.findById(cardId);
+    card = await Card.findById(id);
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not delete card.",
+      "Something went wrong, could not delete comment.",
       500
     );
     return next(error);
@@ -216,8 +266,6 @@ exports.deleteComment = async (req, res, next) => {
     const error = new HttpError("Could not find a card for this id.", 404);
     return next(error);
   }
-
-  const { index } = req.body;
 
   if (index >= 0 && index < card.comments.length) {
     card.comments.splice(index, 1);
@@ -229,7 +277,7 @@ exports.deleteComment = async (req, res, next) => {
     await card.save();
   } catch (err) {
     const error = new HttpError(
-      "Something went wrong, could not delete card.",
+      "Something went wrong, could not delete comment.",
       500
     );
     return next(error);
